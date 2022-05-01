@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:test_project/screens/add_attendance.dart';
 import 'package:test_project/screens/add_course.dart';
 import 'package:test_project/screens/add_student.dart';
@@ -14,6 +15,37 @@ class TeacherHomePage extends StatefulWidget {
 }
 
 class _TeacherHomePageState extends State<TeacherHomePage> {
+  getContainer({String? name, IconData? icon, Function()? ontap}) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+          alignment: Alignment.center,
+          height: 100,
+          width: 100,
+          color: Colors.green.withOpacity(0.7),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Icon(
+                    icon,
+                    size: 40,
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    name!,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +53,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
         label: Text("Log Out"),
         icon: Icon(Icons.logout),
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => LoginPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => LoginPage()));
         },
       ),
       appBar: AppBar(
@@ -36,9 +67,10 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
           children: [
             Row(
               children: [
-                CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/teacher.png')),
+                CircleAvatar(radius: 30, backgroundImage: AssetImage('assets/teacher.png')),
+                SizedBox(
+                  width: 10,
+                ),
                 Text(
                   "Welcome, Sujata Sapkota",
                   style: TextStyle(color: Colors.green),
@@ -47,122 +79,50 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
             ),
             SizedBox(height: 10),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Card(
-                    color: Colors.green.withOpacity(0.5),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 20),
-                      child: Column(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            AddStudentPage())));
-                              },
-                              icon: Icon(
-                                Icons.school_outlined,
-                                size: 40,
-                              )),
-                          Text(
-                            "Students",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    )),
+                getContainer(
+                  icon: Icons.school_outlined,
+                  name: "Students",
+                  ontap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => AddStudentPage())));
+                  },
+                ),
                 SizedBox(width: 20),
-                Card(
-                    color: Colors.green.withOpacity(0.5),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 20),
-                      child: Column(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            AddAttendancePage())));
-                              },
-                              icon: Icon(
-                                Icons.calendar_month_outlined,
-                                size: 40,
-                              )),
-                          Text(
-                            "Attendance",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    )),
+                getContainer(
+                  icon: Icons.calendar_month_outlined,
+                  name: "Attendance",
+                  ontap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => AddAttendancePage())));
+                  },
+                ),
               ],
             ),
             SizedBox(
               height: 20,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Card(
-                    color: Colors.green.withOpacity(0.5),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 20),
-                      child: Column(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            AddCoursePage())));
-                              },
-                              icon: Icon(
-                                Icons.assignment_outlined,
-                                size: 40,
-                              )),
-                          Text(
-                            "Course",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    )),
-                SizedBox(
-                  width: 40,
+                getContainer(
+                  icon: Icons.assignment_outlined,
+                  name: "Course",
+                  ontap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => AddCoursePage())));
+                  },
                 ),
-                Card(
-                    color: Colors.green.withOpacity(0.5),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 20),
-                      child: Column(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            GradesCalculation())));
-                              },
-                              icon: Icon(
-                                Icons.grade_outlined,
-                                size: 40,
-                              )),
-                          Text(
-                            "Grades",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    )),
+                SizedBox(
+                  width: 20,
+                ),
+                getContainer(
+                  icon: Icons.grade_outlined,
+                  name: "Grades",
+                  ontap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => GradesCalculation())));
+                  },
+                ),
               ],
             ),
           ],

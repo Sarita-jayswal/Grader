@@ -14,8 +14,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+ final TextEditingController _emailController = TextEditingController();
+ final TextEditingController _passwordController = TextEditingController();
 
   String? validatePassword(String value) {
     if (value.isEmpty) {
@@ -108,27 +108,27 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(20)),
                 child: TextButton(
                   onPressed: () async {
-                    if (formkey.currentState!.validate()) {
-                      if (_emailController.text == "sarita@gmail.com" &&
-                          _passwordController.text == "12345678") {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => AdminHomePage()));
-                      }
-                      if (_emailController.text == "sujata@gmail.com" &&
-                          _passwordController.text == "sujata123") {
-                        Navigator.push(
+                     Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (_) => TeacherHomePage()));
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Gmail/Password did not match")));
-                      }
-                    } else {
-                      print("Username password not matched");
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Gmail/Password didnot match")));
-                    }
+                    // if (formkey.currentState!.validate()) {
+                    //   if (_emailController.text == "sarita@gmail.com" &&
+                    //       _passwordController.text == "12345678") {
+                    //     Navigator.push(context,
+                    //         MaterialPageRoute(builder: (_) => AdminHomePage()));
+                    //   }
+                    //   if (_emailController.text == "sujata@gmail.com" &&
+                    //       _passwordController.text == "sujata123") {
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (_) => TeacherHomePage()));
+                    //   } 
+                    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    //         content: Text("Gmail/Password did not match")));
+                      
+                    // } 
                   },
                   child: Text(
                     'Login',

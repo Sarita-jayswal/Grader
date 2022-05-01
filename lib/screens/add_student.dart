@@ -30,11 +30,13 @@ class _AddStudentPageState extends State<AddStudentPage> {
         "name": value["name"],
         "rollno": value['rollno'],
         "email": value['email'],
+        "grade": value['grade']??"",
       };
     }).toList();
 
     setState(() {
       _items = data.reversed.toList();
+      print(_items);
     });
   }
 
@@ -154,7 +156,8 @@ class _AddStudentPageState extends State<AddStudentPage> {
                         _createItem({
                           "name": _nameController.text,
                           "rollno": _rollnoController.text,
-                          "email": _emailController.text
+                          "email": _emailController.text,
+                          "grade": "",
                         });
                       }
 
@@ -163,7 +166,8 @@ class _AddStudentPageState extends State<AddStudentPage> {
                         _updateItem(itemKey, {
                           'name': _nameController.text.trim(),
                           'rollno': _rollnoController.text.trim(),
-                          'email': _emailController.text.trim()
+                          'email': _emailController.text.trim(),
+                          'grade': "",
                         });
                       }
 
@@ -254,6 +258,14 @@ class _AddStudentPageState extends State<AddStudentPage> {
                           ),
                           Text(
                             "Email:" '${currentItem['email']}',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 113, 110, 110),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                                Text(
+                            "Grade:" '${currentItem['grade']}',
                             style: TextStyle(
                               color: Color.fromARGB(255, 113, 110, 110),
                               fontSize: 12,
